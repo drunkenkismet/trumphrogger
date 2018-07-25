@@ -44,7 +44,7 @@ Treats -- could've used Enemy class with 'extends' considering they're quite sim
 
 class Treats {
     constructor(x, y, speed) {
-        const treatImgs = ['kfc.png', 'coke.PNG', 'twitter.png'];
+        const treatImgs = ['kfc.png', 'coke.png', 'twitter.png'];
         this.x = x;
         this.y = y;
         this.speed = speed;

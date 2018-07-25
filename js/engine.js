@@ -198,7 +198,7 @@ var Engine = (function(global) {
         'images/char-trump.png',
         'images/trumpogger.png',
         'images/putin.png',
-        'images/coke.png',
+        'images/coke.PNG',
         'images/twitter.png',
         'images/kfc.png'
     ]);

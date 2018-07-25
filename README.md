@@ -5,6 +5,10 @@ Trumprogger: An Arcade Game Clone
 
 First, clone or download the repo to your local machine. Once downloaded, launch the <em>index.html</em> file in your preferred browser. 
 
+You may notice an initial load time of a couple of seconds depending on your internet connection speed; I'm working on converting the Udacity-provided cache code for use with the audio files. 
+
+For a live demo, check out [my site](http://jasonmwhite.com/trumphrogger/index.html). 
+
 ## The Goal
 
 Get President Trumphrogger to safety through a throng of fake-news reporters! Can he make it to across the very sparse Washington Mall, where there's obviously fewer people than some might say? If the reporters get him, they'll uncover more secrets and decrease his net worth, which is a very important thing to the president. However! He'll also happen upon his favorite dietary mainstays—KFC and Diet Coke—and his questionable pastime, Twitter. Collecting these rewards will increase the president's net worth, so be sure to satisfy each of his base desires and prove how firmly you wish to Make America Gastrointestinally Anemic Again!

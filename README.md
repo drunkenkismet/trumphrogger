@@ -23,7 +23,7 @@ This project is only dependent on your willingness to play it.
 
 ## Special Thanks
 
-The Udacity community for their encouragement while making this proof-of-concept product, foremost, and countless blogs across the interwebs that helped answer my most pressing #*&^! questions. 
+Immense appreciation goes to the Udacity community for their encouragement while I worked on this proof-of-concept product. I'd also like to thank the countless blogs I found across the interwebs, not all of which helped answer my most pressing #*&^! questions. 
 
 You may notice that I went ES6-class stupid while writing this game. I, in fact, unabashedly did. 
 

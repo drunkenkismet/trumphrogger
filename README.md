@@ -15,7 +15,7 @@ Get President Trumphrogger to safety through a throng of fake-news reporters! Ca
 
 ## Game Operation
 
-This is a simple, keyboard-based HTML5 canvas game that uses directional keys to move President Trumphrogger across the board. 
+This is a simple, keyboard-based HTML5 canvas game that uses directional keys to move President Trumphrogger across the board. As you collect treats, the president's net worth goes up. As you collide with reporters, his net worth goes down. Note they both increment either way by $130,000. After each hit, 1 of the resident Putins will depart the stage -- as soon as Putin has left Trumphrogger stranded on the Washington Mall, it's Game Over!
 
 ## Dependencies
 

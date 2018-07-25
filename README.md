@@ -11,7 +11,7 @@ For a live demo, check out [my site](http://jasonmwhite.com/trumphrogger/index.h
 
 ## The Goal
 
-Get President Trumphrogger to safety through a throng of fake-news reporters! Can he make it to across the very sparse Washington Mall, where there's obviously fewer people than some might say? If the reporters get him, they'll uncover more secrets and decrease his net worth, which is a very important thing to the president. However! He'll also happen upon his favorite dietary mainstays—KFC and Diet Coke—and his questionable pastime, Twitter. Collecting these rewards will increase the president's net worth, so be sure to satisfy each of his base desires and prove how firmly you wish to Make America Gastrointestinally Anemic Again!
+Get President Trumphrogger to safety through a throng of fake-news reporters! Can he make it to across the very sparse Washington Mall, where there's obviously fewer people than some might say? If the reporters get him, they'll uncover more secrets and decrease his net worth, which the president totally wants to avoid. However! He'll also happen upon his favorite dietary mainstays—KFC and Diet Coke—and his questionable pastime, Twitter. Collecting these rewards will increase the president's net worth, so be sure to satisfy each of his base desires and prove how firmly you wish to Make America Gastrointestinally Anemic Again!
 
 ## Game Operation
 

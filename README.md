@@ -3,16 +3,24 @@ Trumprogger: An Arcade Game Clone
 
 ## Getting started
 
-First, clone or download the repo to your local machine. Once downloaded, launhc the <em>index.html</em> file in your preferred browser. 
+First, clone or download the repo to your local machine. Once downloaded, launch the <em>index.html</em> file in your preferred browser. 
 
 ## The Goal
 
-Trump needs to get to safety through a throng of reporters! Can he make it to across the very spare Washington Mall grass? 
+Get President Trumphrogger to safety through a throng of fake-news reporters! Can he make it to across the very sparse Washington Mall, where there's obviously fewer people than some might say? If the reporters get him, they'll uncover more secrets and decrease his net worth, which is a very important thing to the president. However! He'll also happen upon his favorite dietary mainstays—KFC and Diet Coke—and his questionable pastime, Twitter. Collecting these rewards will increase the president's net worth, so be sure to satisfy each of his base desires and prove how firmly you wish to Make America Gastrointestinally Anemic Again!
 
-## TODO
+## Game Operation
 
-- Update the Net Worth counter depending on collisions and item pickups.
-- Finish the item-drop logic (KFC buckets and bottles of Diet Coke), which help bring Trump's net worth back up.
-- Finish the Putin-Lives-Matter counter so each Putin head lost equates to Trump being sent back to his starting position
-- Finish closing animation sequence and final audio cuts 
-- Finalize modal approach, which will likely be a third-level canvas animation
+This is a simple, keyboard-based HTML5 canvas game that uses directional keys to move President Trumphrogger across the board. 
+
+## Dependencies
+
+This project is only dependent on your willingness to play it. 
+
+## Special Thanks
+
+The Udacity community for their encouragement while making this proof-of-concept product, foremost, and countless blogs across the interwebs that helped answer my most pressing #*&^! questions. 
+
+You may notice that I went ES6-class stupid while writing this game. I, in fact, unabashedly did. 
+
+Enjoy!

@@ -24,11 +24,12 @@ var Engine = (function(global) {
         canvas2 = doc.createElement('canvas'),
         ctx1 = canvas1.getContext('2d'),
         ctx2 = canvas2.getContext('2d'),
-        lastTime;
+        lastTime,
+        id;
         canvas1.width = 505;
-        canvas2.width = 800;
+        canvas2.width = 600;
         canvas1.height = 606;
-        canvas2.height = 800;
+        canvas2.height = 130;
         canvas1.id = 'btmLayer';
         canvas2.id = 'topLayer';
         doc.body.appendChild(canvas1);
@@ -61,7 +62,15 @@ var Engine = (function(global) {
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
-        win.requestAnimationFrame(main);
+        // Special thanks to Matthew Cranford for helping me get over the 'How do I stop the animations' problem I had.
+        // https://matthewcranford.com/arcade-game-walkthrough-part-6-collisions-win-conditions-and-game-resets/
+        
+        if (player.status === 'won' || newScore.hits === 3) {
+            player.triggerWinOrFail();
+            win.cancelAnimationFrame(id); 
+        } else {
+            id = win.requestAnimationFrame(main);
+        }
     }
 
     /* This function does some initial setup that should only occur once,
@@ -70,7 +79,8 @@ var Engine = (function(global) {
      */
     function init() {
         instantiateEnemies();
-        reset();
+        instantiateTreats;
+        instantiatePutinHeads();
         lastTime = Date.now();
         main();
     }
@@ -86,7 +96,6 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
     }
 
     /* This is called by the update function and loops through all of the
@@ -100,7 +109,10 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
-        // player.update();
+
+        allTreats.forEach(function(treat) {
+            treat.update(dt);
+        });
     }
 
     /* This function initially draws the "game level", it will then call
@@ -114,7 +126,7 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
-                'images/water-block.png',   // Top row is water
+                'images/grass-block.png',   // Top row is water
                 'images/stone-block.png',   // Row 1 of 3 of stone
                 'images/stone-block.png',   // Row 2 of 3 of stone
                 'images/stone-block.png',   // Row 3 of 3 of stone
@@ -126,7 +138,7 @@ var Engine = (function(global) {
             row, col;
         
         // Before drawing, clear existing canvas
-        ctx1.clearRect(0, 0, canvas1.width, canvas1.height)
+        ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
         ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
 
         /* Loop through the number of rows and columns we've defined above
@@ -148,8 +160,8 @@ var Engine = (function(global) {
 
         renderEntities();
         newScore.render();
-    }
 
+    }
     /* This function is called by the render function and is called on each game
      * tick. Its purpose is to then call the render functions you have defined
      * on your enemy and player entities within app.js
@@ -162,38 +174,16 @@ var Engine = (function(global) {
             enemy.render();
         });
 
+        allTreats.forEach(function(treat) {
+            treat.render();
+        });
+
+        putinHeadsArr.forEach(function(putin) {
+            putin.render();
+        });            
+        // }
         player.render();
     }
-
-    /* This function does nothing but it could have been a good place to
-     * handle game reset states - maybe a new game menu or a game over screen
-     * those sorts of things. It's only called once by the init() method.
-     */
-    function reset() {
-        // noop
-    }
-
-    // Use this for the reset and modal: (partial code below) https://lowrey.me/modals-in-pure-es6-javascript/
-
-    // class Modal {
-    //     constructor(overlay) {
-    //       this.overlay = overlay;
-    //       const closeButton = overlay.querySelector('.button-close')
-    //       closeButton.addEventListener('click', this.close.bind(this));
-    //       overlay.addEventListener('click', e => {
-    //         if (e.srcElement.id === this.overlay.id) {
-    //           this.close();
-    //         }
-    //       });
-    //     }
-    //     open() {
-    //       this.overlay.classList.remove('is-hidden');
-    //     }
-      
-    //     close() {
-    //       this.overlay.classList.add('is-hidden');
-    //     }
-    //   }
 
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when
@@ -201,14 +191,15 @@ var Engine = (function(global) {
      */
     Resources.load([
         'images/stone-block.png',
-        'images/water-block.png',
         'images/grass-block.png',
         'images/female-reporter.png',
         'images/male-reporter.png',
-        'images/char-boy.png',
         'images/char-trump.png',
         'images/trumpogger.png',
-        'images/putin.png'
+        'images/putin.png',
+        'images/coke.png',
+        'images/twitter.png',
+        'images/kfc.png'
     ]);
     Resources.onReady(init);
 
@@ -218,4 +209,10 @@ var Engine = (function(global) {
      */
     global.ctx1 = ctx1;
     global.ctx2 = ctx2;
+    // return {
+    //     init: init,
+    //     getter: function() {
+    //       return instantiateEnemies(), lastTime = Date.now(), main();;   // Originally, I wanted to call these IIFE methods in the `app.js` file...
+    //     }
+    //   }
 })(this);

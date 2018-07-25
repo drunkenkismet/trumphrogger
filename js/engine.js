@@ -66,6 +66,7 @@ var Engine = (function(global) {
         // https://matthewcranford.com/arcade-game-walkthrough-part-6-collisions-win-conditions-and-game-resets/
         
         if (player.status === 'won' || newScore.hits === 3) {
+            player.winOrFailChk();
             player.triggerWinOrFail();
             win.cancelAnimationFrame(id); 
         } else {

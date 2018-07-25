@@ -1,5 +1,5 @@
 /*
-The following class is used to build the bases for each instantiated enemy (the reporters). 
+The following class is used to build the bases for each instantiated enemy (the reporters).
 */
 
 class Enemy {
@@ -17,7 +17,7 @@ class Enemy {
     update(dt) {
         this.x += this.speed * dt;
         if (this.x > 550) {
-            // Moves the enemy leftward offscreen after hitting the right edge of the canvas. 
+            // Moves the enemy leftward offscreen after hitting the right edge of the canvas.
             this.x = -100;
             this.speed = 100 + Math.floor(Math.random() * 512);
         }
@@ -44,7 +44,7 @@ Treats -- could've used Enemy class with 'extends' considering they're quite sim
 
 class Treats {
     constructor(x, y, speed) {
-        const treatImgs = ['kfc.png', 'coke.png', 'twitter.png'];
+        const treatImgs = ['kfc.png', 'coke.PNG', 'twitter.png'];
         this.x = x;
         this.y = y;
         this.speed = speed;
@@ -66,7 +66,7 @@ class Treats {
             this.x = -100;
             this.y = -100;
             this.speed = 0;
-            // This presented some unexpected behaviors, but the game still seems to function without much of a hiccup. 
+            // This presented some unexpected behaviors, but the game still seems to function without much of a hiccup.
             allTreats.splice(allTreats[this], 1);
         }
     }
@@ -77,7 +77,7 @@ class Treats {
 /*
 Score class is very unnecessary, but it was good practice for learning to implement DOM elements and manipulation into ES6 classes using the `this` keyword.
 */
-class Score {  
+class Score {
     constructor(){
         this.y = 35;
         this.netWorth = 0;
@@ -88,12 +88,12 @@ class Score {
     }
     // Called with the enemy object instance to confirm type before updating the scoreboard.
     updateLoss(obj) {
-        // This is where the `this.type` comes into play. 
+        // This is where the `this.type` comes into play.
         if (obj.type === 'enemy') {
             this.netWorth -= 130000;
             this.scoreDisplay = `Net Worth: $${(this.netWorth).toLocaleString('en')}`;
             this.hits = this.hits + 1;
-            // The top-right Putin heads are a visual indicator 
+            // The top-right Putin heads are a visual indicator
             putin.update();
         }
     }
@@ -105,7 +105,7 @@ class Score {
             this.treats += 1;
         }
     }
-    render() {  
+    render() {
         ctx2.font= "20px sans-serif";
         ctx2.fillStyle = 'rgba(244, 134, 66, 0.8)';
         this.x = ctx2.measureText(this.scoreDisplay).width - 50;
@@ -114,7 +114,7 @@ class Score {
     }
 }
 /*
-The Player class sets the initial position, speed, sprite, and initial status. 
+The Player class sets the initial position, speed, sprite, and initial status.
 */
 class Player {
     constructor() {
@@ -130,8 +130,8 @@ class Player {
     render() {
         ctx1.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
-    // This method is used to move Trumphrogger around the board, but it also calls the object's `winOrFailChk` method. TODO: figure out a way to 
-    // do this without hogging so many resources. It's probably not necessary to have the aforementioned method called so often. 
+    // This method is used to move Trumphrogger around the board, but it also calls the object's `winOrFailChk` method. TODO: figure out a way to
+    // do this without hogging so many resources. It's probably not necessary to have the aforementioned method called so often.
     handleInput(input) {
         switch(input) {
             case 'left':
@@ -156,7 +156,7 @@ class Player {
                 if (this.y < this.ver * 4) {
                     this.y += this.ver;
                     this.winOrFailChk();
-                } 
+                }
                 break;
         }
     }
@@ -170,7 +170,7 @@ class Player {
         }
     }
     triggerWinOrFail() {
-        // Very basic win or lose modal trigger, which also loads the requisite restart elements. 
+        // Very basic win or lose modal trigger, which also loads the requisite restart elements.
         if (this.status === 'won' || newScore.hits === 3) {
             newSounds.winSoundChk();
             const overlay = document.createElement('div');
@@ -199,8 +199,8 @@ class Player {
     }
 }
 /*
-Yes, I went a bit too class happy. This class is used to instantiate all of the associated sounds effects and the main game audio loop. 
-DOM elements are implemented when this class is instantiated, including volume control for all audio elements, whether added to the DOM or not. 
+Yes, I went a bit too class happy. This class is used to instantiate all of the associated sounds effects and the main game audio loop.
+DOM elements are implemented when this class is instantiated, including volume control for all audio elements, whether added to the DOM or not.
 */
 class AllTheSounds {
     constructor() {
@@ -237,9 +237,9 @@ class AllTheSounds {
         // Each of these two sound arrays are used for different parts of the `collideSound(obj)` check below.
         this.soundArr = [this.fakeNewsOne, this.fakeNewsTwo, this.fakeNewsThree, this.fakeNewsFour];
         this.bingArr = [this.bingBingOne, this.bingBingTwo, this.bingBingThree, this.bingBingFour];
-        // This concatenated sound array allows for the end-game pause to cue specific other audio, as well as for implementing the volume controls. 
+        // This concatenated sound array allows for the end-game pause to cue specific other audio, as well as for implementing the volume controls.
         this.allSoundsArr = this.soundArr.concat(this.bingArr);
-        // Calls the below methods as soon as the object is instantiated. 
+        // Calls the below methods as soon as the object is instantiated.
         this.soundLoop();
         this.volumeControls();
     }
@@ -254,7 +254,7 @@ class AllTheSounds {
             this.bingArr[this.genBing].play();
         }
     }
-    // So long as Trumphrogger's status is 'playing', the sound loop continues. 
+    // So long as Trumphrogger's status is 'playing', the sound loop continues.
     soundLoop() {
         this.gameAudio.volume = 0.15;
         if (player.status === 'playing') {
@@ -263,10 +263,10 @@ class AllTheSounds {
                 this.play();
             }, false);
             this.gameAudio.play();
-        } 
+        }
     }
-    // End-game sound check: status change to `won` cues up the win sequence, and while I could've just made the second conditional `player.status === 'lost'`, 
-    // I went with `newScore.hits`. 
+    // End-game sound check: status change to `won` cues up the win sequence, and while I could've just made the second conditional `player.status === 'lost'`,
+    // I went with `newScore.hits`.
     winSoundChk() {
         this.gameAudio = document.querySelector('#game-audio');
         if (player.status === 'won') {
@@ -311,10 +311,10 @@ class AllTheSounds {
     }
 }
 /*
-The PutinHeads class was a strange, complicated thing, and it was only added at the last minutes. 
+The PutinHeads class was a strange, complicated thing, and it was only added at the last minutes.
 I realized that modifying the canvas Putin heads was a bit easier if, as most everything else in this game,
-they were in an array -- I initially instantiated them through adding another canvas layer and pulling some 
-really silly workarounds. Then it dawned on me: wait, this doesn't have to be so difficult. 
+they were in an array -- I initially instantiated them through adding another canvas layer and pulling some
+really silly workarounds. Then it dawned on me: wait, this doesn't have to be so difficult.
 */
 class PutinHeads {
     constructor(x) {
@@ -351,8 +351,8 @@ document.addEventListener('keyup', function(e) {
 });
 
 /*
-The following array, variable, and functions create the globally available entity arrays. 
-Each one required slightly different approaches, though, which is why they look somewhat different. 
+The following array, variable, and functions create the globally available entity arrays.
+Each one required slightly different approaches, though, which is why they look somewhat different.
 */
 
 const allEnemies = [];
@@ -373,16 +373,16 @@ const instantiateTreats = setInterval(function() {
     if (allTreats.length > 2) {
         allTreats.pop();
     } else {
-        // Really proud of this single-line approach to instantiating treats. 
+        // Really proud of this single-line approach to instantiating treats.
         return allTreats.push(treat = new Treats(0, treatsPos[Math.floor(Math.random() * treatsPos.length)], 100 + Math.floor(Math.random() * 512)));
     }
-}, 5000); 
+}, 5000);
 
 const putinHeadsArr = [];
 let putin;
 function instantiatePutinHeads() {
     // Since the Putin heads are all on the same y-coordinate line, this array (similar in concept to the allEnemies array above) creates them
-    // based on their array x-coordinate values, which are each passed as an argument to the PutinHeads constructor. 
+    // based on their array x-coordinate values, which are each passed as an argument to the PutinHeads constructor.
     const putinPos = [520, 470, 420];
     putinPos.forEach(function(putinX) {
         putin = new PutinHeads(putinX);
@@ -394,5 +394,3 @@ const newScore = new Score();
 const player = new Player();
 const newSounds = new AllTheSounds();
 const newTreats = new Treats();
-
-

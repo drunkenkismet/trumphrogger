@@ -75,7 +75,7 @@ class Treats {
     }
 }
 /*
-Score class is very unnecessary, but it was good practice for learning to implement DOM elements and manipulation into ES6 classes using the `this` keyword.
+Score class is very unnecessary, but it was good practice for learning to implement a layered canvas.
 */
 class Score {
     constructor(){
@@ -88,12 +88,11 @@ class Score {
     }
     // Called with the enemy object instance to confirm type before updating the scoreboard.
     updateLoss(obj) {
-        // This is where the `this.type` comes into play.
         if (obj.type === 'enemy') {
             this.netWorth -= 130000;
             this.scoreDisplay = `Net Worth: $${(this.netWorth).toLocaleString('en')}`;
             this.hits = this.hits + 1;
-            // The top-right Putin heads are a visual indicator
+            // The top-right Putin heads are a visual indicator of collision (not collusion).
             putin.update();
         }
     }
@@ -114,7 +113,7 @@ class Score {
     }
 }
 /*
-The Player class sets the initial position, speed, sprite, and initial status.
+The Player class -- includes initial position, speed, sprite path, and initial status, .
 */
 class Player {
     constructor() {
@@ -131,7 +130,7 @@ class Player {
         ctx1.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
     // This method is used to move Trumphrogger around the board, but it also calls the object's `winOrFailChk` method. TODO: figure out a way to
-    // do this without hogging so many resources. It's probably not necessary to have the aforementioned method called so often.
+    // do this without hogging so many resources.
     handleInput(input) {
         switch(input) {
             case 'left':
@@ -199,8 +198,8 @@ class Player {
     }
 }
 /*
-Yes, I went a bit too class happy. This class is used to instantiate all of the associated sounds effects and the main game audio loop.
-DOM elements are implemented when this class is instantiated, including volume control for all audio elements, whether added to the DOM or not.
+Yes, I went a bit too class happy. This class is used to instantiate all of the associated sound effects and the main game audio loop.
+DOM elements are implemented when this class is instantiated, including volume control for all audio elements.
 */
 class AllTheSounds {
     constructor() {
@@ -266,7 +265,7 @@ class AllTheSounds {
         }
     }
     // End-game sound check: status change to `won` cues up the win sequence, and while I could've just made the second conditional `player.status === 'lost'`,
-    // I went with `newScore.hits`.
+    // I went with `newScore.hits`. TODO: Continue removing unnecessary/unused code throughout, including as indicated by this method.
     winSoundChk() {
         this.gameAudio = document.querySelector('#game-audio');
         if (player.status === 'won') {
@@ -339,7 +338,7 @@ class PutinHeads {
         ctx2.drawImage(Resources.get(this.putinSprite), this.putinX, this.putinY);
     }
 }
-// Udacity-provided input handler -->
+// Basic directional-keys input handler -->
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
@@ -368,12 +367,12 @@ function instantiateEnemies() {
 const allTreats = [];
 let treat;
 const treatsPos = [35, 120, 200, 285];
-// Didn't want to clutter the canvas with treats, so these are created given only periodically and when the `allTreats` array is of a certain size.
+// Didn't want to clutter the canvas with treats, so these are created only periodically and when the `allTreats` array is of a certain size.
 const instantiateTreats = setInterval(function() {
     if (allTreats.length > 2) {
         allTreats.pop();
     } else {
-        // Really proud of this single-line approach to instantiating treats.
+        // Really proud of this single-line approach to instantiating treats. Maybe I shouldn't be? TODO: Figure out if I should be...
         return allTreats.push(treat = new Treats(0, treatsPos[Math.floor(Math.random() * treatsPos.length)], 100 + Math.floor(Math.random() * 512)));
     }
 }, 5000);
@@ -394,3 +393,5 @@ const newScore = new Score();
 const player = new Player();
 const newSounds = new AllTheSounds();
 const newTreats = new Treats();
+
+// TODO: Turn this file into an IIFE, and decide the best location across the JS files from which to instantiate these entities.

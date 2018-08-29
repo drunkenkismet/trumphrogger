@@ -5,7 +5,7 @@ Trumprogger: An Arcade Game Clone
 
 First, clone or download the repo to your local machine. Once downloaded, launch the <em>index.html</em> file in your preferred browser. 
 
-You may notice an initial load time of a couple of seconds depending on your internet connection speed; I'm working on converting the Udacity-provided cache code for use with the audio files. 
+You may notice an initial load time of a couple of seconds depending on your internet connection speed; I'm working on expanding the cache code (Resources.js) for use with the audio files. 
 
 For a live demo, check out [my site](http://jasonmwhite.com/trumphrogger/index.html). 
 
@@ -23,7 +23,7 @@ This project is only dependent on your willingness to play it.
 
 ## Special Thanks
 
-Immense appreciation goes to the Udacity community for their encouragement while I worked on this proof-of-concept product. I'd also like to thank the countless blogs I found across the interwebs, not all of which helped answer my most pressing #*&^! questions. 
+Immense appreciation goes to my cohort for their encouragement while I worked on this proof-of-concept product. I'd also like to thank the countless blogs I found across the interwebs, not all of which helped answer my most pressing #*&^! questions. 
 
 You may notice that I went ES6-class stupid while writing this game. I, in fact, unabashedly did. 
 
